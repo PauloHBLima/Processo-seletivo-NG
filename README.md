@@ -99,7 +99,8 @@ $ npx prisma migrate dev --name init
 $ npm run dev
 # O Server irá inicializar em http://localhost:3000
 ```
-
+## :memo: Documentação da API ##
+https://documenter.getpostman.com/view/22468594/2s8YmULetF
 
 ## :memo: Licença ##
 
