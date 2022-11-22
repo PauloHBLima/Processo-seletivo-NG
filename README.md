@@ -34,6 +34,7 @@ As seguintes ferramentas foram usadas neste projeto:
 
 - [Servidor: NodeJs](https://nodejs.org/en//)
 - [TypeScript](https://www.typescriptlang.org/)
+- [ORM: Prisma](https://https://www.prisma.io//)
 
 ## 📚️ Bibliotecas ##
 
