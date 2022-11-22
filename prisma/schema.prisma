@@ -1,0 +1,42 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+generator erd {
+  provider = "prisma-erd-generator"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Users {
+  id        Int    @id @default(autoincrement())
+  username  String @unique
+  password  String
+  accountId Int
+
+  account Accounts @relation(fields: [accountId], references: [id])
+}
+
+model Accounts {
+  id      Int     @id @default(autoincrement())
+  balance Decimal @db.Money
+
+  users Users[]
+
+  destination Transactions[] @relation("destination")
+  source      Transactions[] @relation("source")
+}
+
+model Transactions {
+  id                Int      @id @default(autoincrement())
+  debitedAccountId  Int
+  creditedAccountId Int
+  value             Decimal  @db.Money
+  createdAt         DateTime @default(now())
+
+  accountDebitsId   Accounts @relation(name: "destination", fields: [debitedAccountId], references: [id])
+  accountCreditedId Accounts @relation(name: "source", fields: [creditedAccountId], references: [id])
+}
